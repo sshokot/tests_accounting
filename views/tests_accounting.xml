@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<odoo>
+ <record id="tests_accounting_test_action" model="ir.actions.act_window">
+  <field name="name">Tests</field>
+  <field name="res_model">tests.accounting.test</field>
+  <field name="type">ir.actions.act_window</field>
+  <field name="view_mode">tree,form</field>
+ </record>
+ <record id="tests_accounting_tester_action" model="ir.actions.act_window">
+  <field name="name">Testers</field>
+  <field name="res_model">tests.accounting.tester</field>
+  <field name="type">ir.actions.act_window</field>
+  <field name="view_mode">tree,form</field>
+ </record>
+ 
+ <menuitem name="Tests Accounting" id="tests_accounting_base_menu" />
+ <menuitem name="Tests" id="tests_accounting_test_menu" parent="tests_accounting_base_menu" action="tests_accounting_test_action" />
+ <menuitem name="Testers" id="tests_accounting_tester_menu" parent="tests_accounting_base_menu" action="tests_accounting_tester_action" />
+ 
+
+ <record id="tests_accounting_test_view_form" model="ir.ui.view">
+  <field name="name">tests.accounting.test.view.form</field>
+  <field name="model">tests.accounting.test</field>
+  <field name="arch" type="xml">
+   <form>
+    <group>
+      <group>
+       <field name="name" />
+       <field name="date" />
+       <field name="tag_id" widget="many2many_tags" />
+      </group>
+      <group>
+       <field name="state" />
+       <field name="duration" />
+       <field name="expiration_date" />
+      </group>
+     </group>     
+     <group>
+      <group>
+       <field name="description" />
+      </group>         
+      <group>
+       <field name="tester_id" widget="many2one_tag"/>
+      </group>
+     </group>
+   </form>
+  </field>
+ </record>
+ <record id="tests_accounting_test_view_tree" model="ir.ui.view">
+  <field name="name">tests.accounting.test.view.tree</field>
+  <field name="model">tests.accounting.test</field>
+  <field name="arch" type="xml">
+   <tree>
+     <field name="state" />
+     <field name="name" />
+     <field name="date" />
+     <field name="duration" />
+     <field name="expiration_date" />
+     <field name="tester_id" />
+   </tree>
+  </field>
+ </record>
+
+ <record id="tests_accounting_tester_view_form" model="ir.ui.view">
+  <field name="name">tests.accounting.tester.view.form</field>
+  <field name="model">tests.accounting.tester</field>
+  <field name="arch" type="xml">
+   <form>
+    <group>
+     <field name="name" />
+     <field name="email" />     
+    </group>
+   </form>
+  </field>
+ </record>
+ <record id="tests_accounting_tester_view_tree" model="ir.ui.view">
+  <field name="name">tests.accounting.tester.view.tree</field>
+  <field name="model">tests.accounting.tester</field>
+  <field name="arch" type="xml">
+   <tree>
+    <field name="name" />
+    <field name="email" />
+   </tree>
+  </field>
+ </record>
+</odoo>

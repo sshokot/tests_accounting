@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acl_test_admin,tests.accounting.admin_test,model_tests_accounting_test,group_tests_admin,1,1,1,1
+acl_tester_admin,tests.accounting.admin_tester,model_tests_accounting_tester,group_tests_admin,1,1,1,1
+acl_test_tag_admin,tests.accounting.admin_tag,model_tests_accounting_tag,group_tests_admin,1,1,1,1
