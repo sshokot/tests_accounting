@@ -24,17 +24,4 @@ class main(http.Controller):
         max_days = kw.get('max_days')
         test_duration = kw.get('test_duration')
         today = datetime.datetime.now()
-        hour = today.hour
-        if today.minute!=0:
-            hour +=1
-        start_day = datetime.datetime(today.year, today.month, today.day, hour)
-
-        finish_day = start_day + datetime.timedelta(days=max_days) 
-        finish_day = request.env['tests.accounting.test'].get_day_end_shift(finish_day)
-        avail_testers = []
-        testers = request.env['tests.accounting.tester'].sudo().search([])
-        for tester in testers:
-            free_date = tester.get_free_date(start_day,test_duration)
-            if start_day<=free_date<=finish_day:
-                avail_testers.append(tester.id)
-        return {'testers_ids': avail_testers}
+        return {'testers_ids': request.env['tests.accounting.tester'].get_available_testers(today, max_days, test_duration)}
